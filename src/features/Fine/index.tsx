@@ -1,11 +1,19 @@
 import Datatable from "../../components/common/table";
-import { IRow } from "../../types";
+import { IColumn, IRow } from "../../types";
 
 const FineView = () => {
+  const columns: IColumn[] = [
+    { id: "tipoMulta", label: "Tipo de multa", type: "string" },
+    { id: "descripcion", label: "Descripción", type: "string" },
+    { id: "valor", label: "Valor", type: "number" },
+    { id: "responsable", label: "Responsable", type: "string" },
+    { id: "fechaRegistro", label: "Fecha de registro", type: "date" },
+    { id: "estado", label: "Estado", type: "string" },
+  ];
   return (
     <Datatable
       title="Multas"
-      columns={[]}
+      columns={columns}
       data={[]}
       handleCreateUserClick={function (): void {
         throw new Error("Function not implemented.");

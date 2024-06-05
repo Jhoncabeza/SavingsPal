@@ -99,8 +99,12 @@ export const StyledButtonListItemText = styled(ListItemText)`
 
 export const StyledButtonContainer = styled.div`
   position: absolute;
+  display: flex;
   bottom: 20px;
   left: 20px;
+  max-width: calc(100% - 40px);
+  box-sizing: border-box;
+  width: -webkit-fill-available;
 `;
 
 export const StyledListContainer = styled.div`

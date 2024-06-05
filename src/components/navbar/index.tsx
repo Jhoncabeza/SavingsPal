@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import {
   Logo,
@@ -13,7 +13,7 @@ import {
   StyledListItem,
   StyledListItemText,
 } from "./styles/styles";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const menuItems = [
   { text: "Usuarios", path: "/Users" },
@@ -28,10 +28,28 @@ const menuItems = [
 const Navbar = () => {
   const [selectedItem, setSelectedItem] = useState<number>(0);
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleListItemClick = (_index: number, _path: string) => {
-    setSelectedItem(_index);
-    navigate(_path);
+  useEffect(() => {
+    const savedIndex = localStorage.getItem("selectedItem");
+
+    if (savedIndex !== null) {
+      setSelectedItem(parseInt(savedIndex, 10));
+    } else {
+      // If no saved index, find the current path in menuItems and set it
+      const currentIndex = menuItems.findIndex(
+        (item) => item.path === location.pathname
+      );
+      if (currentIndex !== -1) {
+        setSelectedItem(currentIndex);
+      }
+    }
+  }, [location.pathname]);
+
+  const handleListItemClick = (index: number, path: string) => {
+    setSelectedItem(index);
+    localStorage.setItem("selectedItem", index.toString());
+    navigate(path);
   };
 
   const handleLogout = () => {

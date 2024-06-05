@@ -1,11 +1,17 @@
 import { MenuItem, Select, SelectChangeEvent, styled } from "@mui/material";
 import React from "react";
-
 const CustomSelect = styled(Select)({
   width: "100%",
+  height: "41px",
   "&.MuiInputBase-root": {
     borderRadius: 14,
-    borderColor: "#DA5A51",
+    borderColor: "#DA5A51 !important",
+    "&:hover": {
+      borderColor: "#DA5A51 !important",
+    },
+    "&.Mui-focused": {
+      borderColor: "#DA5A51 !important",
+    },
   },
   "&.MuiInputBase-input": {
     borderRadius: 14,
@@ -15,6 +21,15 @@ const CustomSelect = styled(Select)({
     fontSize: 16,
     padding: "10px 26px 10px 12px",
     transition: "box-shadow",
+    "&:hover": {
+      borderColor: "#DA5A51", // Cambia el color del borde del icono en hover
+    },
+    "&:focus": {
+      borderColor: "#DA5A51 !important", // Cambia el color del borde del icono cuando está enfocado
+    },
+  },
+  "&.MuiSelect-icon": {
+    color: "#DA5A51 !important", // Cambia el color del icono
   },
 });
 
