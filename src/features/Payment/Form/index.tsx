@@ -16,7 +16,7 @@ const StyledTypography = styled.div`
   margin: 10px 0;
 `;
 
-const schema: Yup.ObjectSchema<IPayment> = Yup.object().shape({
+const schema: Yup.ObjectSchema<Omit<IPayment, "estado">> = Yup.object().shape({
   nombre: Yup.string().required("El nombre es obligatorio"),
   descripcion: Yup.string().required("La descripción es obligatoria"),
   valorMulta: Yup.number()
@@ -26,7 +26,6 @@ const schema: Yup.ObjectSchema<IPayment> = Yup.object().shape({
   fecha: Yup.string()
     .required("La fecha es obligatoria")
     .typeError("La fecha debe ser una fecha válida"),
-  estado: Yup.boolean().required("El estado es obligatorio").default(false),
   cedula: Yup.number()
     .typeError("La cédula debe ser un número")
     .required("La cédula es obligatoria")
@@ -35,21 +34,41 @@ const schema: Yup.ObjectSchema<IPayment> = Yup.object().shape({
 });
 
 const PaymentForm = () => {
+  const { handleOnSubmit } = usePayment();
+
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
+    setValue,
   } = useForm<IPayment>({
     shouldUnregister: false,
     mode: "onChange",
     resolver: yupResolver(schema),
   });
 
-  const { handleOnSubmit } = usePayment();
+  const onSubmit = async (data: IPayment) => {
+    const payment: IPayment = {
+      nombre: data.nombre,
+      descripcion: data.descripcion,
+      valorMulta: Number(data.valorMulta),
+      fecha: data.fecha,
+      cedula: Number(data.cedula),
+      estado: true,
+    };
 
+    handleOnSubmit(payment);
+    reset();
+    setValue("nombre", "");
+    setValue("descripcion", "");
+    setValue("valorMulta", "");
+    setValue("fecha", "");
+    setValue("cedula", "");
+  };
   return (
     <form
-      onSubmit={handleSubmit(handleOnSubmit)}
+      onSubmit={handleSubmit(onSubmit)}
       style={{ width: "60%", margin: "5% auto 0 auto" }}
     >
       <Grid container spacing={2}>
@@ -129,23 +148,6 @@ const PaymentForm = () => {
                 error: !!errors.fecha,
               }}
               label={""}
-            />
-          </FormControl>
-        </Grid>
-
-        <Grid item xs={12} sm={6}>
-          <FormControl variant="standard" fullWidth>
-            <StyledTypography>Estado</StyledTypography>
-            <GenericInput
-              id={"estado"}
-              type={"text"}
-              control={control}
-              props={{
-                helperText: errors.estado?.message,
-                error: !!errors.estado,
-              }}
-              label={""}
-              isSwitch={true}
             />
           </FormControl>
         </Grid>

@@ -1,3 +1,5 @@
+import { IResultado } from "./statistics.interface";
+
 export interface IColumn {
   id: string;
   label: string;
@@ -8,4 +10,13 @@ export interface IColumn {
 
 export interface IRow {
   [key: string]: string | number | boolean;
+}
+
+export interface IData {
+  data: {
+    resultado: IResultado;
+    message: string;
+    status: number;
+    timestamp: string;
+  };
 }

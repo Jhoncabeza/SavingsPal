@@ -3,6 +3,6 @@ export interface IPayment {
   descripcion: string;
   valorMulta: number;
   fecha: string;
-  estado: boolean;
+  estado?: boolean;
   cedula: number;
 }
