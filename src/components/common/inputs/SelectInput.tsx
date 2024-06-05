@@ -25,6 +25,7 @@ interface SelectInputProps {
   value: string;
   onChange: (event: SelectChangeEvent<unknown>) => void;
   options: string[];
+  isDisabled: boolean;
 }
 
 const SelectInput: React.FC<SelectInputProps> = ({
@@ -34,6 +35,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
   labelId,
   value,
   onChange,
+  isDisabled,
 }) => {
   const handleChange = (event: SelectChangeEvent<unknown>) => {
     onChange(event);
@@ -46,6 +48,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
       label={label}
       value={value}
       onChange={handleChange}
+      disabled={isDisabled}
     >
       {options.map((option, index) => (
         <MenuItem key={index} value={option}>

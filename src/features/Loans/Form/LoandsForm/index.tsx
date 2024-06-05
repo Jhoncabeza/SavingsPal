@@ -127,6 +127,7 @@ const LoandsForm = () => {
               props={{
                 helperText: errors.valorPrestamo?.message,
                 error: !!errors.valorPrestamo,
+                disabled: true,
               }}
               label={""}
             />
@@ -142,6 +143,7 @@ const LoandsForm = () => {
               props={{
                 helperText: errors.plazoPago?.message,
                 error: !!errors.plazoPago,
+                disabled: true,
               }}
               options={[
                 "1",
@@ -171,6 +173,7 @@ const LoandsForm = () => {
               props={{
                 helperText: errors.valorMensual?.message,
                 error: !!errors.valorMensual,
+                disabled: true,
               }}
               label={""}
             />
@@ -202,7 +205,7 @@ const LoandsForm = () => {
                 helperText: errors.estadoPago?.message,
                 error: !!errors.estadoPago,
               }}
-              options={["Aprobado", "Denegado", "Pendiente"]}
+              options={["pagado", "denegado", "pendiente"]}
               label={""}
             />
           </FormControl>

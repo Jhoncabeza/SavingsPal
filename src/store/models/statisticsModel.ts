@@ -5,4 +5,7 @@ export interface StatisticsModel {
   totalFundsRaised: number;
   interestRate: IEstadisticas[];
   totalInterestRate: number;
+  totalLoanedMoney: number;
+  raisedMoney: IEstadisticas[];
+  fineType: IEstadisticas[];
 }

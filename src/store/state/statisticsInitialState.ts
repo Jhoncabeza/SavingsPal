@@ -5,4 +5,7 @@ export const statisticsInitialState: StatisticsModel = {
   totalFundsRaised: 0,
   interestRate: [],
   totalInterestRate: 0,
+  totalLoanedMoney: 0,
+  raisedMoney: [],
+  fineType: [],
 };

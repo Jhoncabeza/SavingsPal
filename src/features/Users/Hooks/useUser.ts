@@ -59,7 +59,7 @@ const useUser = () => {
           });
         })
         .catch((error) => {
-          enqueueSnackbar(error.message, {
+          enqueueSnackbar(error.response.data.message, {
             variant: "error",
           });
         })
@@ -70,7 +70,8 @@ const useUser = () => {
   };
 
   const handleOnSubmit = (data: IUserFormData) => {
-    const idTipoCuenta = data.idTipoCuenta === "Ahorro" ? "1" : "2";
+    console.log("data.idTipoCuenta", data);
+    const idTipoCuenta = data.idTipoCuenta === "Ahorros" ? "1" : "2";
     dispatch(setLoading(true));
 
     getCreateUser({
@@ -90,7 +91,7 @@ const useUser = () => {
         });
       })
       .catch((error) => {
-        enqueueSnackbar(error.data.message, {
+        enqueueSnackbar(error.response.data.message, {
           variant: "error",
         });
       })

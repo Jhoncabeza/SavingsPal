@@ -25,7 +25,7 @@ const usePayment = () => {
         });
       })
       .catch((error) => {
-        enqueueSnackbar(corregirCodificacion(error.data.message), {
+        enqueueSnackbar(corregirCodificacion(error.response.data.message), {
           variant: "error",
         });
       })

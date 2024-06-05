@@ -1,5 +1,5 @@
 import React from "react";
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import { Box, Typography, Grid } from "@mui/material";
 import { Circle } from "@mui/icons-material";
 import { IEstadisticas } from "../../types/statistics.interface";
@@ -101,7 +101,6 @@ const PieGraph: React.FC<IPieGraph> = ({ fundsRaised }) => {
               />
             ))}
           </Pie>
-          <Tooltip />
         </PieChart>
       </ResponsiveContainer>
       <ChartLegend />

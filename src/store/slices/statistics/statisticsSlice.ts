@@ -17,6 +17,15 @@ export const statisticsSlice = createSlice({
     setTotalInterestRate: (state, action) => {
       state.totalInterestRate = action.payload;
     },
+    setTotalLoanedMoney: (state, action) => {
+      state.totalLoanedMoney = action.payload;
+    },
+    setRaisedMoney: (state, action) => {
+      state.raisedMoney = action.payload;
+    },
+    setFineType: (state, action) => {
+      state.fineType = action.payload;
+    },
   },
 });
 
@@ -25,6 +34,9 @@ export const {
   setTotalFundsRaised,
   setInterestRate,
   setTotalInterestRate,
+  setTotalLoanedMoney,
+  setRaisedMoney,
+  setFineType,
 } = statisticsSlice.actions;
 
 export default statisticsSlice.reducer;

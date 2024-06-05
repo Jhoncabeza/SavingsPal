@@ -84,6 +84,7 @@ const PaymentForm = () => {
                 error: !!errors.nombre,
               }}
               label={""}
+              options={["RETRASO APORTE", "INASISTENCIA", "ACTIVIDAD"]}
             />
           </FormControl>
         </Grid>

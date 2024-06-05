@@ -22,6 +22,7 @@ interface InputProps {
   control: any;
   props: TextFieldProps;
   isSwitch?: boolean;
+  isDisabled?: boolean;
 }
 
 const GenericInput: React.FC<InputProps> = ({
@@ -31,6 +32,7 @@ const GenericInput: React.FC<InputProps> = ({
   options,
   control,
   isSwitch = false,
+
   props,
 }) => {
   return options ? (
@@ -50,6 +52,7 @@ const GenericInput: React.FC<InputProps> = ({
                 field.onChange(e.target.value);
               }}
               options={options}
+              isDisabled={!!props.disabled}
             />
           )}
         />
